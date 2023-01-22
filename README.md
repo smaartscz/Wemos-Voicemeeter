@@ -8,8 +8,7 @@ Pomocí D1_mini s IR příjmačem, lze zaznamenávat IR kody a ty následně v H
 # Knihovny
 Program vyžaduje následující knihovny:
 
-- [PubSubClient](https://github.com/knolleary/pubsubclient)
-- [IRremoteESP8266](https://github.com/crankyoldgit/IRremoteESP8266)
+- [AppleMIDI](https://github.com/lathoub/Arduino-AppleMIDI-Library)
 - [ESP8266mDNS](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266mDNS)
 - [ESP8266WiFi](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi)
 - [ArduinoOTA](https://github.com/jandrassy/ArduinoOTA)
