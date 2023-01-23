@@ -1,5 +1,6 @@
 
 # Wemos-Voicemeeter
+![Ukazka weboveho prostredi](img/website.png)
 ## Co to vlastně je?
 Pomocí D1_mini můžeme spustit webserver, který bude naslouchat pro určitý POST request a následně ho odeslat pomocí AppleMIDI do PC.
 ## Jak to spustit?
@@ -14,7 +15,7 @@ Vyextrahujeme si ho a otevřeme Voicemeeter-midi-website.ino, zde provedeme pot�
 ### Připojení k WIFI
 Po připojení D1_mini se nám vytvoří automaticky WIFI access point s názvem "Wemos Voicemeeter - FALLBACK" s heslem "HelpMePLS". Po připojení nakonfigurujeme WIFI.
 ### Propojení s PC
-Na Windows 10 stačí stáhnout [rtpMIDI](https://www.tobias-erichsen.de/software/rtpmidi.html), přidáme novou session a nesmíme také přidat directory s nastavením z D1_mini. Defaultní port je 5004, IP zjistíme z nastavení routeru, popřípadě stačí v "nastaveni.h" povolit debug a D1_mini nám vypíše svojí IP adresu do konzole.
+Na Windows 10 stačí stáhnout [rtpMIDI](https://www.tobias-erichsen.de/software/rtpmidi.html), přidáme novou session a nesmíme zapomenout také přidat directory s nastavením z D1_mini. Defaultní port je 5004, IP zjistíme z nastavení routeru, popřípadě stačí v "nastaveni.h" povolit debug a D1_mini nám vypíše svojí IP adresu do konzole.
 # Knihovny
 Program vyžaduje následující knihovny:
 - [AppleMIDI](https://github.com/lathoub/Arduino-AppleMIDI-Library)
