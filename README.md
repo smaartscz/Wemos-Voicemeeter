@@ -1,5 +1,6 @@
 
 # Wemos-Voicemeeter
+![Ukazka weboveho prostredi](img/website.png)
 ## Co to vlastně je?
 Pomocí D1_mini můžeme spustit webserver, který bude naslouchat pro určitý POST request a následně ho odeslat pomocí AppleMIDI do PC.
 ## Jak to spustit?
