@@ -23,3 +23,6 @@ Program vyžaduje následující knihovny:
 - [ArduinoOTA](https://github.com/jandrassy/ArduinoOTA)
 - [WifiManager](https://github.com/tzapu/WiFiManager)
 Naštěstí všechny knihovny lze nainstalovat přímo v Arduino IDE.
+
+#Zdroje 
+- [ArduinoSlovakia](https://www.arduinoslovakia.eu/blog/2019/4/esp8266---http-server-a-responzivny-dizajn?lang=en)
