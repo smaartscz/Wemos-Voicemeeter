@@ -1,7 +1,6 @@
 #include "funkce.h"
 ESP8266WebServer server(80);
 
-
 void setup_wifi() {
   pinMode(LED_BUILTIN, OUTPUT);
   // Pripojeni k WIFI
