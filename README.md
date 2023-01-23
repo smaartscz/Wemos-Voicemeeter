@@ -12,10 +12,8 @@ Stačí [stáhnout aktuální binary soubor](https://github.com/smaartscz/Wemos-
 ### Kompilace z .ino souboru
 [Stáhneme si celý tento repozitář](https://github.com/smaartscz/Wemos-Voicemeeter/archive/refs/heads/master.zip).
 Vyextrahujeme si ho a otevřeme Voicemeeter-midi-website.ino, zde provedeme potřebné úpravy a nahrajememe jako jakýkoliv jiný sketch na Wemos.
-### Připojení k WIFI
-Po připojení D1_mini se nám vytvoří automaticky WIFI access point s názvem "Wemos Voicemeeter - FALLBACK" s heslem "HelpMePLS". Po připojení nakonfigurujeme WIFI.
-### Propojení s PC
-Na Windows 10 stačí stáhnout [rtpMIDI](https://www.tobias-erichsen.de/software/rtpmidi.html), přidáme novou session a nesmíme zapomenout také přidat directory s nastavením z D1_mini. Defaultní port je 5004, IP zjistíme z nastavení routeru, popřípadě stačí v "nastaveni.h" povolit debug a D1_mini nám vypíše svojí IP adresu do konzole.
+### First time setup
+Pro více informací stačí zamířit na [Wiki](../../wiki)
 # Knihovny
 Program vyžaduje následující knihovny:
 - [AppleMIDI](https://github.com/lathoub/Arduino-AppleMIDI-Library)
