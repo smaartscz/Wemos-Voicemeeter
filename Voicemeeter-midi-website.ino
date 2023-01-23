@@ -22,6 +22,7 @@ void setup() {
   WiFi.disconnect();
   setup_wifi();
   WiFi.hostname(my_hostname);
+  ArduinoOTA.setPassword((const char *)"123");
   ArduinoOTA.setHostname(my_hostname);
   ArduinoOTA.begin();
   WiFi.mode(WIFI_STA);
