@@ -1,5 +1,7 @@
 APPLEMIDI_CREATE_DEFAULTSESSION_INSTANCE();
+void signalizaceMIDI();
 void poslat_midi(String typ, String nazev) {
+  signalizaceMIDI();
   //MIDI for controlling soundboard
   if (typ == "soundboard") {
     if (nazev == "delej") {

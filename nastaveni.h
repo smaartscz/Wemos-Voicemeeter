@@ -14,4 +14,4 @@
 //------------------Promenne----------------------------------------//
 int rdy = false;
 //--------------------------------------------------------------//
-bool Povolit_debug = false;   //Povolit debug?
+bool Povolit_debug = true;   //Povolit debug?
