@@ -1,6 +1,5 @@
-#include "login.h"
-#define sw_version "2023.01ALPHA"
-#define my_hostname "Wemos Voicemeeter"
+#define sw_version "2023.01a"
+#define my_hostname "Wemos_Voicemeeter"
 //------------------Knihovny------------------------------------//
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
@@ -11,10 +10,8 @@
 #include <Arduino.h>
 #include <ArduinoOTA.h>
 #include "stranka.h"
-//------------------MIDI----------------------------------------//
-#define MIDI_CC         91  
-#define MIDI_CHANNEL    1  
+#include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager WiFi Configuration Magic
 //------------------Promenne----------------------------------------//
 int rdy = false;
 //--------------------------------------------------------------//
-bool Povolit_debug = true;   //Povolit debug?
+bool Povolit_debug = false;   //Povolit debug?

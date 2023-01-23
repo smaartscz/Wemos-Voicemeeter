@@ -1,3 +1,5 @@
+#include "nastaveni.h"
+#include "MIDImap.h"
 void chyba_wifi() {
   digitalWrite(LED_BUILTIN, LOW);
   delay(100);
@@ -10,18 +12,22 @@ void zapnuto() {
 }
 
 void debug(String debug) {
-  if (Povolit_debug == true)
-    Serial.println("");
-  Serial.print("[Debug] ");
-  Serial.print(debug);
+  if (Povolit_debug == true) {
+    String debugmsg = "\n[DEBUG] ";
+    debugmsg += debug;
+    Serial.print(debugmsg);
+  }
 }
-
-void handleRoot() {
-  Serial.println("GET /");
-  server.send(200, "text/html", stranka);
-  String Body = "Body bylo prijato:\n";
-  Body += server.arg("plain");
-  Body += "\n";
-	server.send(200, "text/plain", Body);
-	debug(Body);
+void rozdel_string(String body) {
+  body += "%";
+  debug(body);
+  while (body.length() > 0) {
+    int delic = body.indexOf("=");
+    String typ = body.substring(0, delic);
+    String nazev = body.substring(delic + 1, body.indexOf("%"));
+    poslat_midi(typ, nazev);
+    debug(typ);
+    debug(nazev);
+    body = "";
+  }
 }

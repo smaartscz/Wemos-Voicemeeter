@@ -1,30 +1,23 @@
-#include "nastaveni.h"
 #include "funkce.h"
-APPLEMIDI_CREATE_DEFAULTSESSION_INSTANCE();
-//WiFiClient espClient;
 ESP8266WebServer server(80);
 
 
 void setup_wifi() {
+  pinMode(LED_BUILTIN, OUTPUT);
   // Pripojeni k WIFI
-  debug("");
-  debug("Pripojovani k ");
-  debug(wifi_ssid);
-  WiFi.begin(wifi_ssid, wifi_password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-    chyba_wifi();
+  WiFiManager wm;
+  bool res;
+  res = wm.autoConnect("Wemos Voicemeeter - Fallback", "HelpMePLS");
+  if (!res) {
+    debug("Nelze se připojit k WiFi");
+    chyba_wifi;
+  } else {
+    debug("Úspěšně připojeno k WiFi");
   }
-  debug("");
-  debug("Uspesne pripojeno k wifi ");
-  debug("IP adresa: ");
-  debug(WiFi.localIP().toString());
-
-}  
+}
 void setup() {
   Serial.begin(115200);
-  if (Povolit_debug = true) {
+  if (Povolit_debug == true) {
     Serial.setDebugOutput(true);
   }
   WiFi.disconnect();
@@ -34,36 +27,48 @@ void setup() {
   ArduinoOTA.begin();
   WiFi.mode(WIFI_STA);
   //AppleMIDI setup
-  debug(F("Momentalni konfigurace rtpMIDI je:"));
-  debug(String(AppleMIDI.getPort())); 
-  debug(AppleMIDI.getName()); 
+  String zprava = "rtpMIDI bezi na portu: ";
+  zprava += String(AppleMIDI.getPort());
+  zprava += ", user-friendly nazev je: ";
+  zprava += AppleMIDI.getName();
+  debug(zprava);
   MIDI.begin();
   server.on("/", handleRoot);
+  server.on("/version", handleVersion);
   server.begin();
   debug("HTTP server byl spusten!");
- AppleMIDI.setHandleConnected([](const APPLEMIDI_NAMESPACE::ssrc_t & ssrc, const char* name) {
-    Serial.println(F("Connected to session"));
-    Serial.println(ssrc); 
-    Serial.println(name); 
-
+  AppleMIDI.setHandleConnected([](const APPLEMIDI_NAMESPACE::ssrc_t& ssrc, const char* name) {
+    String zprava = "Prave se do session pripojilo ID: ";
+    zprava += ssrc;
+    zprava += ", user-friendly jmeno: ";
+    zprava += name;
+    debug(zprava);
   });
-    AppleMIDI.setHandleDisconnected([](const APPLEMIDI_NAMESPACE::ssrc_t & ssrc) {
-    Serial.println(F("Disconnected"));
-    Serial.println(ssrc); 
+  AppleMIDI.setHandleDisconnected([](const APPLEMIDI_NAMESPACE::ssrc_t& ssrc) {
+    String zprava = "Prave se ze session odpojilo ID: ";
+    zprava += ssrc;
+    debug(zprava);
   });
   debug("SETUP probehl uspesne\n");
 }
 
-
-
+void handleRoot() {
+  debug("GET /");
+  server.send(200, "text/html", stranka);
+  String Body = "Body bylo prijato: ";
+  Body += server.arg("plain");
+  Body += "\n";
+  server.send(200, "text/plain", Body);
+  debug(Body);
+  rozdel_string(server.arg("plain"));
+}
+void handleVersion() {
+  debug("GET /version");
+  server.send(200, "text/html", sw_version);
+}
 void loop() {
   MIDI.read();
-zapnuto();
-
+  zapnuto();
   server.handleClient();
-
-  //   MIDI.sendControlChange((byte)MIDI_CC,(byte)1,MIDI_CHANNEL);
-  //   MIDI.sendControlChange((byte)MIDI_CC,(byte)0,MIDI_CHANNEL);
-  // }
- }
-
+  ArduinoOTA.handle();
+}
