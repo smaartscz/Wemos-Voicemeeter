@@ -15,3 +15,13 @@ void debug(String debug) {
   Serial.print("[Debug] ");
   Serial.print(debug);
 }
+
+void handleRoot() {
+  Serial.println("GET /");
+  server.send(200, "text/html", stranka);
+  String Body = "Body bylo prijato:\n";
+  Body += server.arg("plain");
+  Body += "\n";
+	server.send(200, "text/plain", Body);
+	debug(Body);
+}

@@ -1,20 +1,9 @@
 #include "nastaveni.h"
 #include "funkce.h"
-#include "website.h"
+APPLEMIDI_CREATE_DEFAULTSESSION_INSTANCE();
+//WiFiClient espClient;
+ESP8266WebServer server(80);
 
-void setup() {
-  Serial.begin(115200);
-  if (Povolit_debug = true) {
-    Serial.setDebugOutput(true);
-  }
-  WiFi.disconnect();
-  setup_wifi();
-  WiFi.hostname(my_hostname);
-  ArduinoOTA.setHostname(my_hostname);
-  ArduinoOTA.begin();
-  WiFi.mode(WIFI_STA);
-  debug("SETUP probehl uspesne\n");
-}
 
 void setup_wifi() {
   // Pripojeni k WIFI
@@ -30,17 +19,51 @@ void setup_wifi() {
   debug("");
   debug("Uspesne pripojeno k wifi ");
   debug("IP adresa: ");
-  if (Povolit_debug == true)
-    Serial.println(WiFi.localIP());
+  debug(WiFi.localIP().toString());
+
+}  
+void setup() {
+  Serial.begin(115200);
+  if (Povolit_debug = true) {
+    Serial.setDebugOutput(true);
+  }
+  WiFi.disconnect();
+  setup_wifi();
+  WiFi.hostname(my_hostname);
+  ArduinoOTA.setHostname(my_hostname);
+  ArduinoOTA.begin();
+  WiFi.mode(WIFI_STA);
+  //AppleMIDI setup
+  debug(F("Momentalni konfigurace rtpMIDI je:"));
+  debug(String(AppleMIDI.getPort())); 
+  debug(AppleMIDI.getName()); 
+  MIDI.begin();
+  server.on("/", handleRoot);
+  server.begin();
+  debug("HTTP server byl spusten!");
+ AppleMIDI.setHandleConnected([](const APPLEMIDI_NAMESPACE::ssrc_t & ssrc, const char* name) {
+    Serial.println(F("Connected to session"));
+    Serial.println(ssrc); 
+    Serial.println(name); 
+
+  });
+    AppleMIDI.setHandleDisconnected([](const APPLEMIDI_NAMESPACE::ssrc_t & ssrc) {
+    Serial.println(F("Disconnected"));
+    Serial.println(ssrc); 
+  });
+  debug("SETUP probehl uspesne\n");
 }
 
 
-void loop() {
-  long now = millis();
-  if (rdy == true) {  //zmenit stav LED pokud je vsechno ready
-    zapnuto();
-  }
 
-  
+void loop() {
+  MIDI.read();
+zapnuto();
+
+  server.handleClient();
+
+  //   MIDI.sendControlChange((byte)MIDI_CC,(byte)1,MIDI_CHANNEL);
+  //   MIDI.sendControlChange((byte)MIDI_CC,(byte)0,MIDI_CHANNEL);
+  // }
  }
 

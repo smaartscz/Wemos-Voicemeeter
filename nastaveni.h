@@ -3,11 +3,14 @@
 #define my_hostname "Wemos Voicemeeter"
 //------------------Knihovny------------------------------------//
 #include <ESP8266WiFi.h>
+#include <ESP8266WebServer.h>
+#include <ESP8266mDNS.h>
 #include <WiFiClient.h>
 #include <WiFiUdp.h>
 #include <AppleMIDI.h>
 #include <Arduino.h>
 #include <ArduinoOTA.h>
+#include "stranka.h"
 //------------------MIDI----------------------------------------//
 #define MIDI_CC         91  
 #define MIDI_CHANNEL    1  
