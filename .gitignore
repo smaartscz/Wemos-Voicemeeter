@@ -1,1 +1,4 @@
 login.h
+*.bin
+build/esp8266.esp8266.d1_mini_clone/Voicemeeter-midi-website.ino.elf
+build/esp8266.esp8266.d1_mini_clone/Voicemeeter-midi-website.ino.map
