@@ -8,6 +8,7 @@ const char stranka[] PROGMEM = R"=====(
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Voicemeeter remote control</title>
+    <meta name="mobile-web-app-capable" content="yes">
 </head>
 
 <body>
