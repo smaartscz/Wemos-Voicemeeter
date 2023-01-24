@@ -6,7 +6,16 @@ void chyba_wifi() {
   digitalWrite(LED_BUILTIN, HIGH);
   delay(100);
 }
-
+void signalizaceMIDI() {
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(100);
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(100);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(100);
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(500);
+}
 void zapnuto() {
   digitalWrite(LED_BUILTIN, HIGH);
 }
